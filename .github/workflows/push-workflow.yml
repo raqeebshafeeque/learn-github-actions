@@ -1,0 +1,36 @@
+name: learn github workflows
+
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Setup Go
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.19.0"
+
+      # Install all the dependencies
+      - name: Install dependencies
+        run: |
+          go version
+          go get -u golang.org/x/lint/golint
+          go mod tidy
+
+      # Run build of the application
+      - name: Run build
+        run: go build .
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+
+      # Run testing on the code
+      - name: Run testing
+        run: go test ./...
