@@ -2,7 +2,7 @@ name: learn actions on pull request
 # , closed, ready_for_review, review_requested
 on:
   pull_request:
-    types: [closed]
+    types: [opened, closed]
 jobs:
   creating:
     # if: github.event.pull_request.type == opened
@@ -13,7 +13,7 @@ jobs:
 
       # greet
       - name: Install dependencies
-        run: echo `{{toJSON(github.event.pull_request)}}`
+        run: echo ${{toJSON(github.event.pull_request)}}
   # merging:
   #   if: github.event.pull_request.merged == true
   #   runs-on: ubuntu-latest
