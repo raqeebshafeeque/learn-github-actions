@@ -1,0 +1,56 @@
+name: learn actions on pull request
+
+on:
+  pull_request:
+    types: [opened, closed, ready_for_review, review_requested]
+jobs:
+  creating:
+    if: github.event.pull_request.type == opened
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # greet
+      - name: Install dependencies
+        run: echo 'A new PR created'
+  merging:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # greet
+      - name: Install dependencies
+        run: echo 'Your PR merged'
+  closing:
+    if: github.event.pull_request.type == closed && github.event.pull_request.merged = false
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # greet
+      - name: Install dependencies
+        run: echo 'Your PR is closed'
+  ready:
+    if: github.event.pull_request.type == ready_for_review
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # greet
+      - name: Install dependencies
+        run: echo 'Your PR is ready for revie'
+  in_review:
+    if: github.event.pull_request.type == review_requested
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # greet
+      - name: Install dependencies
+        run: echo 'Your PR is in review'
