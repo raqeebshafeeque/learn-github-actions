@@ -1,0 +1,13 @@
+name: learn actions on pull request
+on:
+  pull_request:
+    types:
+      - opened
+jobs:
+  creating:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create
+        run: echo "Created new PR"

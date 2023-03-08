@@ -1,0 +1,14 @@
+name: learn actions on pull request
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  closing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Close
+        run: echo 'Your PR is closed'
