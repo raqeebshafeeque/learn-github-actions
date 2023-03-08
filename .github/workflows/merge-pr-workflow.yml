@@ -1,0 +1,15 @@
+name: learn actions on pull request
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  merging:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Merge
+        run: echo 'Your PR merged'

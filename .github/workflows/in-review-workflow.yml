@@ -1,0 +1,15 @@
+name: learn actions on pull request
+on:
+  pull_request:
+    types:
+      - review_requested
+jobs:
+  in_review:
+    if: github.event.pull_request.type == review_requested
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: In review
+        run: echo 'Your PR is in review'
