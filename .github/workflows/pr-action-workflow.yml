@@ -2,7 +2,7 @@ name: take action on pr events
 
 run-name: Learning PR Actions
 on:
-  pull-request:
+  pull_request:
     types:
       [
         opened,
