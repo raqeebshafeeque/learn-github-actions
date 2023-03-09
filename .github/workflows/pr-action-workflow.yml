@@ -21,6 +21,7 @@ jobs:
 
       - name: PR Actions
         uses: raqeebshafeeque/pr-actions@v1.2
+
         with:
           webhook: "webhook"
           token: ${{ github.token }}
