@@ -1,0 +1,27 @@
+name: take action on pr events
+
+run-name: Learning PR Actions
+on:
+  pull-request:
+    types:
+      [
+        opened,
+        closed,
+        assigned,
+        review_requested,
+        ready_for_review,
+        review_request_removed,
+      ]
+jobs:
+  pr-events:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: PR Actions
+        uses: raqeebshafeeque/pr-actions@v1.1
+        with:
+          webhook: "webhook"
+          token: ${{ github.token }}
+          event: ${{ toJson(github.event.pull_request) }}
